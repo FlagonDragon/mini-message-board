@@ -24,10 +24,8 @@ const messages = [
 ];
 
 app.get("/", (req, res) => {
-    res.render("index")
+  res.render("index", { title: "Mini Messageboard", messages: messages });
 });
-
-app.get("/", (req, res) => res.send("Homepage"));
 
 app.get("/new", (req, res) => res.send("new message"));
 
