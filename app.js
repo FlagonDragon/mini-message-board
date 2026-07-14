@@ -10,6 +10,8 @@ app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
+app.use(express.urlencoded({ extended: true }));
+
 const messages = [
   {
     text: "Hi there!",
@@ -29,6 +31,17 @@ app.get("/", (req, res) => {
 
 app.get("/new", (req, res) => {
   res.render("form", { title: "Mini Messageboard", messages: messages });
+});
+
+app.post("/new", (req, res) => {
+
+  console.log(req.body.messageText);
+  console.log('huh');
+  
+  messages.push({ text: req.body.messageText, user: req.body.messageUser, added: new Date() });
+
+  res.redirect("/")
+
 });
 
 app.post("/new", (req, res) => {
