@@ -16,12 +16,14 @@ const messages = [
   {
     text: "Hi there!",
     user: "Amando",
-    added: new Date()
+    added: new Date(),
+    id: 0
   },
   {
     text: "Hello World!",
     user: "Charles",
-    added: new Date()
+    added: new Date(),
+    id: 1,
   }
 ];
 
@@ -33,19 +35,26 @@ app.get("/new", (req, res) => {
   res.render("form", { title: "Mini Messageboard", messages: messages });
 });
 
+app.get("/:messageID", (req, res) => {
+  const { messageID } = req.params;
+  res.render("message", { message: messages[messageID] });
+});
+
+app.post("/", (req, res) => {
+  
+  res.redirect("/");
+
+});
+
 app.post("/new", (req, res) => {
 
   console.log(req.body.messageText);
   console.log('huh');
   
-  messages.push({ text: req.body.messageText, user: req.body.messageUser, added: new Date() });
+  messages.push({ text: req.body.messageText, user: req.body.messageUser, added: new Date(), id: messages.length });
 
-  res.redirect("/")
+  res.redirect("/");
 
-});
-
-app.post("/new", (req, res) => {
-  res.send("i be postin");
 });
 
 const PORT = 3000;

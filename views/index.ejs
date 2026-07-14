@@ -9,16 +9,21 @@
       <h3><%= title %></h3> 
 
       <% messages.forEach(message => { %>
+
         <div>
-          <ul>
-            <li><%= message.text %></li>
-            <li>By: <%= message.user %></li>
-            <li><%= message.added %></li>  
-          </ul>
+
+          <%- include('message', { message: message }) %>
+
+          <a href="/<%=message.id%>">
+            <span>Open</span>
+          </a>
+
         </div>
+
       <% }); %>
 
     </div>
     
   </body>
+
 </html>
