@@ -27,8 +27,9 @@ app.get("/", (req, res) => {
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });
 
-app.get("/new", (req, res) => res.send("new message"));
-
+app.get("/new", (req, res) => {
+  res.render("form", { title: "Mini Messageboard", messages: messages });
+});
 
 const PORT = 3000;
 
