@@ -31,6 +31,10 @@ app.get("/new", (req, res) => {
   res.render("form", { title: "Mini Messageboard", messages: messages });
 });
 
+app.post("/new", (req, res) => {
+  res.send("i be postin");
+});
+
 const PORT = 3000;
 
 app.listen(PORT, (error) => {
